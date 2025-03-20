@@ -1,7 +1,7 @@
 import {updateText} from "./utils/updateText.js";
 import {updateData} from "./utils/updateData.js";
 
-export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0) {
+export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0, custom='') {
     const adjustedFoodTrucks = numOfFoodTrucks > 0 ? numOfFoodTrucks : 1;
     const customersPerTruck = Math.floor(numOfPeople / adjustedFoodTrucks);
     const sequenceLength = Math.min(3 + Math.floor(customersPerTruck / 10), 6);
@@ -15,18 +15,25 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
         { name: 'Soda', image: 'images/soda.svg' },
         { name: 'Coffee', image: 'images/coffee.svg' }
     ];
-
-    const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
-    const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
-    const sequence = shuffledItems.slice(0, maxSequenceLength);
-
-    //saving solution to data.txt
-    let data = "[";
-    for (let i = 0; i < sequence.length; i++) {
-        data += sequence[i].name + ",";
+    let sequence = [];
+    if (custom != '') {
+        const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
+        const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
+        sequence = shuffledItems.slice(0, maxSequenceLength);
     }
-    data += "]";
-    updateData(data);
+    else {
+        for (let i = 0; i < custom.length; i++) {
+            sequence.push(possibleItems[parseInt(custom.charAt(i))]);
+        }
+    }
+
+    // Adding solution to data
+    let data = 'solution[';
+    for (let i = 0; i < sequence.length; i++) {
+        data += sequence[i].name + ',';
+    }
+    data = data.slice(0, -1);
+    data += '],player[';
 
     // Sequence display area
     const sequenceDisplay = document.createElement('div');
@@ -69,6 +76,8 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
 
     // Function to show input buttons
     function showInputButtons() {
+        const startTime = Date.now();
+        let timestamps = '';
         inputContainer.innerHTML = '';
         const playerSequence = [];
 
@@ -88,11 +97,19 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
 
             button.addEventListener('click', () => {
                 playerSequence.push(item);
+                // Adding participant actions to data, storing timestamps
+                data += item.name + ',';
+                timestamps += (Date.now() - startTime).toString() + ',';
                 // Provide visual feedback
                 button.classList.add('selected');
 
                 // Check if the player's sequence is complete
                 if (playerSequence.length === sequence.length) {
+                    // Adding timestamps to data, saving data
+                    data = data.slice(0, -1);
+                    timestamps = timestamps.slice(0, -1);
+                    data += '],timestamps[' + timestamps + ']';
+                    updateData(data);
                     // Check if the sequences match
                     if (sequencesMatch(playerSequence, sequence)) {
                         // Success: remove overlay and proceed
