@@ -17,7 +17,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
     ];
     const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
     const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
-    let sequence = shuffledItems.slice(0, maxSequenceLength);
+    const sequence = shuffledItems.slice(0, maxSequenceLength);
     /*if (custom !== '') {
         sequence = [];
         for (let i = 0; i < custom.length; i++) {
@@ -56,7 +56,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
             const itemImage = document.createElement('img');
             itemImage.src = sequence[displayIndex].image;
             itemImage.alt = sequence[displayIndex].name;
-            itemImage.classList.add('sequence-item');    
+            itemImage.classList.add('sequence-item');
 
             // Append the image to the display area
             sequenceDisplay.appendChild(itemImage);
