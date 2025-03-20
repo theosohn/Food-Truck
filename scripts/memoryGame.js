@@ -17,13 +17,16 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
     ];
     const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
     const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
-    const sequence = shuffledItems.slice(0, maxSequenceLength);
-    /*if (custom !== '') {
-        sequence = [];
+    let temp = [];
+    if (custom !== '') {
         for (let i = 0; i < custom.length; i++) {
-            sequence.push(possibleItems[parseInt(custom.charAt(i))]);
+            temp.push(possibleItems[parseInt(custom.charAt(i))]);
         }
-    }*/
+    }
+    else {
+        temp = shuffledItems.slice(0, maxSequenceLength);
+    }
+    const sequence = temp;
 
     // Adding solution to data
     let data = 'solution[';
