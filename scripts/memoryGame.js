@@ -1,3 +1,5 @@
+import {updateData} from "./utils/updateData.js";
+
 export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0) {
     const adjustedFoodTrucks = numOfFoodTrucks > 0 ? numOfFoodTrucks : 1;
     const customersPerTruck = Math.floor(numOfPeople / adjustedFoodTrucks);
@@ -16,6 +18,14 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
     const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
     const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
     const sequence = shuffledItems.slice(0, maxSequenceLength);
+
+    //saving solution to data.txt
+    let data = "[";
+    for (let i = 0; i < sequence.length; i++) {
+        data += sequence[i].name + ",";
+    }
+    data += "]";
+    updateData(data);
 
     // Sequence display area
     const sequenceDisplay = document.createElement('div');
