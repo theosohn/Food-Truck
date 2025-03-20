@@ -20,12 +20,12 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
     const sequence = shuffledItems.slice(0, maxSequenceLength);
 
     //saving solution to data.txt
-    /*let data = "[";
+    let data = "[";
     for (let i = 0; i < sequence.length; i++) {
         data += sequence[i].name + ",";
     }
     data += "]";
-    updateData(data);*/
+    updateData(data);
 
     // Sequence display area
     const sequenceDisplay = document.createElement('div');
