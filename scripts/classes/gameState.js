@@ -4,6 +4,7 @@ import { show } from "../utils/show.js";
 import { updateText } from "../utils/updateText.js";
 import { Park } from "./park.js";
 import { startMemoryGame } from "../memoryGame.js";
+import { updateData } from "../utils/updateData.js";
 
 export class GameState {
     constructor (randomize, hints=[], numOfParks=4, numOfDays=5, numOfHours=8, numOfPeople=[], numOfFoodTrucks=[]) {
@@ -34,6 +35,7 @@ export class GameState {
         }
 
         this.currentPark = this.parks[0];
+        updateData('start');
         this.createMenu();
     }
 
@@ -301,6 +303,7 @@ export class GameState {
     }
 
     endGame() {
+        updateData('end');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
