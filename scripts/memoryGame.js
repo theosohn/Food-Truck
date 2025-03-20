@@ -16,7 +16,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
         { name: 'Coffee', image: 'images/coffee.svg' }
     ];
     let sequence = [];
-    if (custom != '') {
+    if (custom == '') {
         const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
         const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
         sequence = shuffledItems.slice(0, maxSequenceLength);
