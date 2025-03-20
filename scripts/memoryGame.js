@@ -15,13 +15,11 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
         { name: 'Soda', image: 'images/soda.svg' },
         { name: 'Coffee', image: 'images/coffee.svg' }
     ];
-    let sequence = [];
-    if (custom == '') {
-        const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
-        const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
-        sequence = shuffledItems.slice(0, maxSequenceLength);
-    }
-    else {
+    const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
+    const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
+    let sequence = shuffledItems.slice(0, maxSequenceLength);
+    if (custom !== '') {
+        sequence = [];
         for (let i = 0; i < custom.length; i++) {
             sequence.push(possibleItems[parseInt(custom.charAt(i))]);
         }
