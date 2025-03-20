@@ -1,3 +1,4 @@
+import {updateText} from "./utils/updateText.js";
 import {updateData} from "./utils/updateData.js";
 
 export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0) {
