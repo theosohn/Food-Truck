@@ -1,10 +1,11 @@
 import {updateText} from "./utils/updateText.js";
 import {updateData} from "./utils/updateData.js";
 
-export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0, custom='') {
+export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0, custom='') {
     const adjustedFoodTrucks = numOfFoodTrucks > 0 ? numOfFoodTrucks : 1;
     const customersPerTruck = Math.floor(numOfPeople / adjustedFoodTrucks);
     const sequenceLength = Math.min(3 + Math.floor(customersPerTruck / 10), 6);
+    const sid = id;
 
     const possibleItems = [
         { name: 'Taco', image: 'images/taco.svg' },
@@ -50,13 +51,14 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
 
     // Display the sequence to the player
     let displayIndex = 0;
-    function displayNextItem() {
+    function displayNextItem(id) {
         if (displayIndex < sequence.length) {
             // Clear previous display
             sequenceDisplay.innerHTML = '';
 
             // Create an image for the current item
             const itemImage = document.createElement('img');
+            const sid = id;
             itemImage.src = sequence[displayIndex].image;
             itemImage.alt = sequence[displayIndex].name;
             itemImage.classList.add('sequence-item');
@@ -70,14 +72,15 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
             // After displaying the sequence, clear the display
             sequenceDisplay.innerHTML = '';
             // Show the input buttons
-            showInputButtons();
+            showInputButtons(sid);
         }
     }
-    displayNextItem();
+    displayNextItem(sid);
 
     // Function to show input buttons
-    function showInputButtons() {
+    function showInputButtons(id) {
         const startTime = Date.now();
+        const sid = id;
         let timestamps = '';
         inputContainer.innerHTML = '';
         const playerSequence = [];
@@ -110,7 +113,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
                     data = data.slice(0, -1);
                     timestamps = timestamps.slice(0, -1);
                     data += '],timestamps[' + timestamps + ']';
-                    updateData(data);
+                    updateData(sid, attempts, data);
                     // Check if the sequences match
                     if (sequencesMatch(playerSequence, sequence)) {
                         // Success: remove overlay and proceed
