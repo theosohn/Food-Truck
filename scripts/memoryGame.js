@@ -5,7 +5,6 @@ export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, 
     const adjustedFoodTrucks = numOfFoodTrucks > 0 ? numOfFoodTrucks : 1;
     const customersPerTruck = Math.floor(numOfPeople / adjustedFoodTrucks);
     const sequenceLength = Math.min(3 + Math.floor(customersPerTruck / 10), 6);
-    const sid = id;
 
     const possibleItems = [
         { name: 'Taco', image: 'images/taco.svg' },
@@ -58,7 +57,6 @@ export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, 
 
             // Create an image for the current item
             const itemImage = document.createElement('img');
-            const sid = id;
             itemImage.src = sequence[displayIndex].image;
             itemImage.alt = sequence[displayIndex].name;
             itemImage.classList.add('sequence-item');
@@ -67,20 +65,19 @@ export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, 
             sequenceDisplay.appendChild(itemImage);
 
             displayIndex++;
-            setTimeout(displayNextItem, 2000);
+            setTimeout(displayNextItem(id), 2000);
         } else {
             // After displaying the sequence, clear the display
             sequenceDisplay.innerHTML = '';
             // Show the input buttons
-            showInputButtons(sid);
+            showInputButtons(id);
         }
     }
-    displayNextItem(sid);
+    displayNextItem(id);
 
     // Function to show input buttons
     function showInputButtons(id) {
         const startTime = Date.now();
-        const sid = id;
         let timestamps = '';
         inputContainer.innerHTML = '';
         const playerSequence = [];
@@ -113,7 +110,7 @@ export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, 
                     data = data.slice(0, -1);
                     timestamps = timestamps.slice(0, -1);
                     data += '],timestamps[' + timestamps + ']';
-                    updateData(sid, attempts, data);
+                    updateData(id, attempts, data);
                     // Check if the sequences match
                     if (sequencesMatch(playerSequence, sequence)) {
                         // Success: remove overlay and proceed
@@ -133,7 +130,7 @@ export function startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, 
                         }
 
                         alert('Incorrect sequence. Please try again.');
-                        startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts);
+                        startMemoryGame(id, numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts);
                     }
                 }
             });
