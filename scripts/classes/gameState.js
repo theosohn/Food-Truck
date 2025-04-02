@@ -6,10 +6,10 @@ import { Park } from "./park.js";
 import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
-    static id = 0;
+    //static id = 0;
 
     constructor (randomize, hints=[], numOfParks=4, numOfDays=5, numOfHours=8, numOfPeople=[], numOfFoodTrucks=[]) {
-        GameState.id++;
+        //GameState.id++;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
         this.numOfHours = numOfHours;
@@ -199,7 +199,7 @@ export class GameState {
             const numOfPeople = this.currentPark.getNumOfPeople(this.currentDay, this.currentHour);
             const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour);
 
-            startMemoryGame(GameState.id, numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
+            startMemoryGame(/*GameState.id, */numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
                 buttonContainerHeader.textContent = "Decision for the next hour:"; 
                 this.generateHint();
