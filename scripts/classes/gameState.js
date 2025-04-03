@@ -2,7 +2,6 @@ import { randomInteger } from "../utils/randomInteger.js";
 import { hide } from "../utils/hide.js";
 import { show } from "../utils/show.js";
 import { updateText } from "../utils/updateText.js";
-import { updateData } from "../utils/updateData.js";
 import { Park } from "./park.js";
 import { startMemoryGame } from "../memoryGame.js";
 
@@ -220,9 +219,6 @@ export class GameState {
                     hide(buttonContainerHeader);
                     hide(buttonContainer);
                     hide(hintText);
-                    if (this.currentDay == this.numOfDays - 1) {
-                        updateText('continue-button', 'End game')
-                    }
                     show(continueButton);
                 }
                 updateText('current-day', this.currentDay + 1);
@@ -305,20 +301,11 @@ export class GameState {
     }
 
     endGame() {
-        updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
         updateText('profit-gains', '');
-        /*const profitIndicator = document.getElementById('profit-indicator');
-        hide(profitIndicator);
-        const timeIndicator = document.getElementById('time-indicator');
-        hide(timeIndicator);
-        const historyContainer = document.getElementById('history-container');
-        hide(historyContainer);*/
-        const endInstructions = document.getElementById('end-instructions');
-        show(endInstructions);
-        const qualtricsString = document.getElementById('qualtrics-string');
+        const qualtricsString = document.getElementById('qualtricsString');
         show(qualtricsString);
     }
 
