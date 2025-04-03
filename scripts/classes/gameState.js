@@ -2,13 +2,14 @@ import { randomInteger } from "../utils/randomInteger.js";
 import { hide } from "../utils/hide.js";
 import { show } from "../utils/show.js";
 import { updateText } from "../utils/updateText.js";
+import { updateData } from "../utils/updateData.js";
 import { Park } from "./park.js";
 import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
     //static id = 0;
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=1/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=1/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
         //GameState.id++;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -219,6 +220,9 @@ export class GameState {
                     hide(buttonContainerHeader);
                     hide(buttonContainer);
                     hide(hintText);
+                    if (this.currentDay == this.numOfDays - 1) {
+                        updateText('continue-button', 'End game')
+                    }
                     show(continueButton);
                 }
                 updateText('current-day', this.currentDay + 1);
@@ -301,6 +305,7 @@ export class GameState {
     }
 
     endGame() {
+        updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
