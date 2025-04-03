@@ -207,7 +207,7 @@ export class GameState {
                 show(hintText);
 
                 // Start of a new day
-                if (this.numOfHours - this.currentHour == 0) {
+                if (this.currentHour >= this.numOfHours) {
                     show(continueButton);
                     hide(observationTextContainer);
                     hide(buttonContainerHeader);
@@ -235,7 +235,6 @@ export class GameState {
 
         // End of the game
         if (this.currentDay >= this.numOfDays) {
-            this.currentDay = this.numOfDays - 1;
             this.endGame();
             return false;
         }
@@ -243,7 +242,7 @@ export class GameState {
         updateText('current-park', 'Home');
         updateText('number-of-people', '');
         updateText('number-of-food-trucks', '');
-        updateText('current-day', this.currentDay + 1);
+        updateText('current-day', this.currentDay);
         updateText('remaining-hours', this.numOfHours - this.currentHour);
 
         return true;
