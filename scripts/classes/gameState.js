@@ -224,6 +224,11 @@ export class GameState {
                         updateText('continue-button', 'End game')
                     }
                     show(continueButton);
+                } else {
+                    const allParkButtons = document.querySelectorAll('.park-button');
+                    allParkButtons.forEach(button => {
+                        show(button);
+                    });
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);
