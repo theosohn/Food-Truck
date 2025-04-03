@@ -186,10 +186,6 @@ export class GameState {
                 show(buttonContainerHeader);
                 show(buttonContainer);
                 hide(continueButton);
-                const allParkButtons = document.querySelectorAll('.park-button');
-                allParkButtons.forEach(button => {
-                    show(button);
-                });
             } else {
                 hide(continueButton);
             }
@@ -206,7 +202,11 @@ export class GameState {
 
             startMemoryGame(/*GameState.id, */numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
-                buttonContainerHeader.textContent = "Decision for the next hour:"; 
+                buttonContainerHeader.textContent = "Decision for the next hour:";
+                const allParkButtons = document.querySelectorAll('.park-button');
+                allParkButtons.forEach(button => {
+                    show(button);
+                });
                 this.generateHint();
                 show(profitGainsText);
                 show(hintText);
@@ -224,11 +224,6 @@ export class GameState {
                         updateText('continue-button', 'End game')
                     }
                     show(continueButton);
-                } else {
-                    const allParkButtons = document.querySelectorAll('.park-button');
-                    allParkButtons.forEach(button => {
-                        show(button);
-                    });
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);
