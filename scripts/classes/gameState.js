@@ -209,13 +209,6 @@ export class GameState {
                 this.displayNumberOfMovingTrucks(false);
                 show(observationTextContainer);
                 this.currentHour++;
-                updateText('current-day', this.currentDay + 1);
-                updateText('remaining-hours', this.numOfHours - this.currentHour);
-                const allParkButtons = document.querySelectorAll('.park-button');
-                allParkButtons.forEach(button => {
-                    show(button);
-                });
-
                 // Start of a new day
                 if (this.currentHour >= this.numOfHours) {
                     show(continueButton);
@@ -224,6 +217,12 @@ export class GameState {
                     hide(buttonContainer);
                     hide(hintText);
                 }
+                updateText('current-day', this.currentDay + 1);
+                updateText('remaining-hours', this.numOfHours - this.currentHour);/*
+                const allParkButtons = document.querySelectorAll('.park-button');
+                allParkButtons.forEach(button => {
+                    show(button);
+                });*/
             })
         })
     }
