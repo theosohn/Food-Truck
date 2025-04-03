@@ -314,6 +314,8 @@ export class GameState {
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
         updateText('profit-gains', '');
+        const endInstructions = document.getElementById('endInstructions');
+        show(endInstructions);
         const qualtricsString = document.getElementById('qualtricsString');
         show(qualtricsString);
     }
