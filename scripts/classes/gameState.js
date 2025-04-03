@@ -9,7 +9,7 @@ import { startMemoryGame } from "../memoryGame.js";
 export class GameState {
     //static id = 0;
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=1/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
         //GameState.id++;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -227,6 +227,10 @@ export class GameState {
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);
+                const allParkButtons = document.querySelectorAll('.park-button');
+                allParkButtons.forEach(button => {
+                    show(button);
+                });
             })
         })
     }
