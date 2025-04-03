@@ -208,6 +208,7 @@ export class GameState {
 
                 // Start of a new day
                 if (this.currentHour >= this.numOfHours) {
+                    this.nextDay();
                     show(continueButton);
                     hide(observationTextContainer);
                     hide(buttonContainerHeader);
