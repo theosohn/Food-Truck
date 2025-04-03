@@ -216,15 +216,14 @@ export class GameState {
                 } else {
                     this.displayNumberOfMovingTrucks(false);
                     show(observationTextContainer);
+                    this.currentHour++;
+                    updateText('current-day', this.currentDay + 1);
+                    updateText('remaining-hours', this.numOfHours - this.currentHour);
+                    const allParkButtons = document.querySelectorAll('.park-button');
+                    allParkButtons.forEach(button => {
+                        show(button);
+                    });
                 }
-                
-                this.currentHour++;
-                updateText('current-day', this.currentDay + 1);
-                updateText('remaining-hours', this.numOfHours - this.currentHour);
-                const allParkButtons = document.querySelectorAll('.park-button');
-                allParkButtons.forEach(button => {
-                    show(button);
-                });
             })
         })
     }
