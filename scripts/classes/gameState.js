@@ -189,6 +189,8 @@ export class GameState {
                 allParkButtons.forEach(button => {
                     show(button);
                 });
+                show(profitGainsText);
+                show(hintText);
             } else {
                 hide(continueButton);
             }
