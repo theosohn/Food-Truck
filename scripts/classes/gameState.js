@@ -8,7 +8,7 @@ import { startMemoryGame } from "../memoryGame.js";
 export class GameState {
     //static id = 0;
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=1/*5*/, numOfHours=1/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=1/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
         //GameState.id++;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -305,6 +305,8 @@ export class GameState {
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
         updateText('profit-gains', '');
+        const qualtricsString = document.getElementById('qualtricsString');
+        show(qualtricsString);
     }
 
     generateHint() {
