@@ -1,5 +1,5 @@
 export function updateData(value) {
-    const textElement = document.getElementById('qualtricsString');
+    const textElement = document.getElementById('qualtrics-string');
     textElement.textContent += value;
 }
 
