@@ -9,7 +9,7 @@ import { startMemoryGame } from "../memoryGame.js";
 export class GameState {
     //static id = 0;
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=1/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=1/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
         //GameState.id++;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -186,6 +186,10 @@ export class GameState {
                 show(buttonContainerHeader);
                 show(buttonContainer);
                 hide(continueButton);
+                const allParkButtons = document.querySelectorAll('.park-button');
+                allParkButtons.forEach(button => {
+                    show(button);
+                });
             } else {
                 hide(continueButton);
             }
@@ -202,11 +206,7 @@ export class GameState {
 
             startMemoryGame(/*GameState.id, */numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
-                buttonContainerHeader.textContent = "Decision for the next hour:";
-                const allParkButtons = document.querySelectorAll('.park-button');
-                allParkButtons.forEach(button => {
-                    show(button);
-                });
+                buttonContainerHeader.textContent = "Decision for the next hour:"; 
                 this.generateHint();
                 show(profitGainsText);
                 show(hintText);
