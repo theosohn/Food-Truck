@@ -1,10 +1,16 @@
+export function updateData(value) {
+    const textElement = document.getElementById(id);
+    textElement.textContent += value;
+}
+
+/*
 export function updateData(s) {
-    /*var fs = require('fs');
+    var fs = require('fs');
     fs.appendFile('../data.txt', s, function (err) {
         if (err) throw err;
-    });*/
+    });
 }
-/*
+
 import { app, firestore } from '.../firebaseConfig.js';
 import { collection, doc, setDoc, getDoc, getDocs, updateDoc, Timestamp } from 'firebase/firestore';
 
