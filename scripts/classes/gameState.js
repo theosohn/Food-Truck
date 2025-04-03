@@ -185,6 +185,10 @@ export class GameState {
                 show(buttonContainerHeader);
                 show(buttonContainer);
                 hide(continueButton);
+                const allParkButtons = document.querySelectorAll('.park-button');
+                allParkButtons.forEach(button => {
+                    show(button);
+                });
             } else {
                 hide(continueButton);
             }
@@ -218,11 +222,7 @@ export class GameState {
                     show(continueButton);
                 }
                 updateText('current-day', this.currentDay + 1);
-                updateText('remaining-hours', this.numOfHours - this.currentHour);/*
-                const allParkButtons = document.querySelectorAll('.park-button');
-                allParkButtons.forEach(button => {
-                    show(button);
-                });*/
+                updateText('remaining-hours', this.numOfHours - this.currentHour);
             })
         })
     }
