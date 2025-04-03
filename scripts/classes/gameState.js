@@ -211,11 +211,11 @@ export class GameState {
                 this.currentHour++;
                 // Start of a new day
                 if (this.currentHour >= this.numOfHours) {
-                    show(continueButton);
                     hide(observationTextContainer);
                     hide(buttonContainerHeader);
                     hide(buttonContainer);
                     hide(hintText);
+                    show(continueButton);
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);/*
@@ -241,7 +241,7 @@ export class GameState {
         updateText('current-park', 'Home');
         updateText('number-of-people', '');
         updateText('number-of-food-trucks', '');
-        updateText('current-day', this.currentDay);
+        updateText('current-day', this.currentDay + 1);
         updateText('remaining-hours', this.numOfHours - this.currentHour);
 
         return true;
