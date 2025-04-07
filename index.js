@@ -69,8 +69,3 @@ updateText('final-day', gameState.numOfDays);
 
 updateText('remaining-hours', gameState.numOfHours - gameState.currentHour);
 updateText('current-day', gameState.currentDay + 1);
-
-
-
-
-

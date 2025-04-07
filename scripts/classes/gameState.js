@@ -327,7 +327,7 @@ export class GameState {
         if (this.randomize) {
             var index = randomInteger(0, this.hints.length - 1);
         } else {
-            var index = randomInteger(this.currentDay * this.numOfHours + this.currentHour);
+            var index = this.currentDay * this.numOfHours + this.currentHour;
         }
         this.generateHint(index);
     }
