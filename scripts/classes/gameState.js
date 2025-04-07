@@ -24,9 +24,9 @@ export class GameState {
         this.seenHints = "hints[";
         this.dayListItems = {};
         this.eventLists = {};
-        this.relativeTime = 0;
-        this.parkDecisions = "[";
-        this.parkTimestamps = "[";
+        this.relativeTime = Date.now();
+        this.parkDecisions = "parks[";
+        this.parkTimestamps = "parkTimes[";
 
         for (let i = 0; i < numOfParks; i++) {
             let newPark;
@@ -169,7 +169,7 @@ export class GameState {
             button.addEventListener("click", () =>  {
                 // Update current park
                 this.currentPark = this.parks[i];
-                this.parkDecisions += i.toString() + ",";
+                this.parkDecisions += (i+1).toString() + ",";
                 this.parkTimestamps += (Date.now() - this.relativeTime).toString() + ',';
                 //this.displayNumberOfMovingTrucks(true);
                 

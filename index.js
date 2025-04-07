@@ -75,7 +75,7 @@ const tutorialCustomMemoryGame = [
     "536412" //soda, pizza, coffee, ice cream, burger, hotdog
 ];
 
-//tutorial settings, remember to modify 
+//tutorial settings, remember to modify GameState.generateProfit, memoryGame sequence creation, and maybe GameState.displayNumberOfMovingTrucks (doesn't work, also uncomment all uses)
 const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
 //const gameState = new GameState(false, hints, 4, 2, 5, numOfPeople, numOfFoodtrucks); //real game settings
 
