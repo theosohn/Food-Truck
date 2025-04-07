@@ -16,15 +16,12 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, cust
         { name: 'Coffee', image: 'images/coffee.svg' }
     ];
 
+    /* const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
+    const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
+    const sequence = shuffledItems.slice(0, maxSequenceLength); */
     let temp = [];
-    if (custom.length > 0) {
-        for (let i = 0; i < custom.length; i++) {
-            temp.push(possibleItems[parseInt(custom.charAt(i))]);
-        }
-    } else {
-        const maxSequenceLength = Math.min(sequenceLength, possibleItems.length);
-        const shuffledItems = [...possibleItems].sort(() => 0.5 - Math.random());
-        temp = shuffledItems.slice(0, maxSequenceLength);
+    for (let i = 0; i < custom.length; i++) {
+        temp.push(possibleItems[parseInt(custom.charAt(i))]);
     }
     const sequence = temp;
     
