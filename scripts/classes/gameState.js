@@ -319,16 +319,12 @@ export class GameState {
         show(qualtricsString);
     }
 
-    generateHint(i) {
-        updateText("hint", this.hints[i]);
-    }
-
     generateHint() {
         if (this.randomize) {
             var index = randomInteger(0, this.hints.length - 1);
         } else {
             var index = this.currentDay * this.numOfHours + this.currentHour;
         }
-        this.generateHint(index);
+        updateText("hint", this.hints[index]);
     }
 }
