@@ -41,7 +41,7 @@ export class Park {
             peopleString += "[" + this.numOfPeople[i].toString() + "],"
         }
         updateData(peopleString.slice(0,-1) + "],")
-        let trucksString = "people["
+        let trucksString = "trucks["
         for (let i = 0; i < this.numOfFoodTrucks.length; i++) {
             trucksString += "[" + this.numOfFoodTrucks[i].toString() + "],"
         }

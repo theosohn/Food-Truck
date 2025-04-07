@@ -24,6 +24,9 @@ export class GameState {
         this.seenHints = "hints[";
         this.dayListItems = {};
         this.eventLists = {};
+        this.relativeTime = 0;
+        this.parkDecisions = "[";
+        this.parkTimestamps = "[";
 
         for (let i = 0; i < numOfParks; i++) {
             let newPark;
@@ -166,6 +169,8 @@ export class GameState {
             button.addEventListener("click", () =>  {
                 // Update current park
                 this.currentPark = this.parks[i];
+                this.parkDecisions += i.toString() + ",";
+                this.parkTimestamps += (Date.now() - this.relativeTime).toString() + ',';
                 //this.displayNumberOfMovingTrucks(true);
                 
                 const allParkButtons = document.querySelectorAll('.park-button');
@@ -190,6 +195,7 @@ export class GameState {
                 allParkButtons.forEach(button => {
                     show(button);
                 });
+                this.relativeTime = Date.now();
             } else {
                 hide(continueButton);
             }
@@ -233,6 +239,7 @@ export class GameState {
                 allParkButtons.forEach(button => {
                     show(button);
                 });
+                this.relativeTime = Date.now();
             })
         })
     }
@@ -311,7 +318,9 @@ export class GameState {
     }
 
     endGame() {
-        updateData(this.seenHints.slice(0,-1) + "]")
+        updateData(this.parkDecisions.slice(0,-1) + "],");
+        updateData(this.parkTimestamps.slice(0,-1) + "],");
+        updateData(this.seenHints.slice(0,-1) + "]");
         updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
