@@ -30,7 +30,39 @@ const hints = [
     "In Park 3, they say if you stare long enough, a truck might appear.",
 ];
 
-const gameState = new GameState(true, hints);
+const numOfPeople = [
+    
+];
+
+const numOfFoodTrucks = [
+
+];
+
+const tutorialHints = [
+    "",
+    "There were the same number of people and trucks at both parks that time, but that's going to change!",
+    "See how money is proportional to people? Keep in mind the total number of people at both parks remains the same for this tutorial.",
+    "Now the number of trucks changed! Money is inversely proportional to trucks. The total number of trucks is also the same here.",
+    "People and trucks for Day 2 will be identical to Day 1. Try to make as much money as you can!",
+    "",
+    "Every hour of Day 2 is the same as Day 1!",
+    "Keep in mind all customers pay $10 in this tutorial. This will change in the real game.",
+    "The amount of money in an hour also decreases by 25% each time you guess the order wrong!",
+    "",
+];
+
+const tutorialNumOfPeople = [
+    [[40,64,40,64,64],[40,64,40,64,64]], //park 1 day 1: hours
+    [[40,16,40,16,16],[40,16,40,16,16]]
+];
+
+const tutorialNumOfFoodTrucks = [
+    [[5,5,2,2,8],[5,5,2,2,8]],
+    [[5,5,8,8,2],[5,5,8,8,2]]
+];
+
+const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks); //tutorial settings
+//const gameState = new GameState(false, hints, 4, 2, 5, numOfPeople, numOfFoodtrucks); //real game settings
 
 updateText('final-day', gameState.numOfDays);
 

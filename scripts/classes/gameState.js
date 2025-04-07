@@ -7,10 +7,9 @@ import { Park } from "./park.js";
 import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
-    //static id = 0;
 
     constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
-        //GameState.id++;
+        this.randomize = randomize;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
         this.numOfHours = numOfHours;
@@ -204,10 +203,14 @@ export class GameState {
             const numOfPeople = this.currentPark.getNumOfPeople(this.currentDay, this.currentHour);
             const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour);
 
-            startMemoryGame(/*GameState.id, */numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
+            startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
-                buttonContainerHeader.textContent = "Decision for the next hour:"; 
-                this.generateHint();
+                buttonContainerHeader.textContent = "Decision for the next hour:";
+                if (this.randomize) {
+                    this.generateHint();
+                } else {
+                    this.generateHint(this.currentDay * this.numOfHours + this.currentHour);
+                }
                 show(profitGainsText);
                 show(hintText);
 
@@ -261,7 +264,7 @@ export class GameState {
         const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(day, hour);
         const numOfCustomers = Math.max(1, randomInteger(-2, 4) + Math.ceil(numOfPeople / (numOfFoodTrucks + 1)));
         
-        let profitsFromHour = numOfCustomers * randomInteger(8, 25);
+        let profitsFromHour = numOfCustomers * 10 //tutorial settings, real game settings: randomInteger(8, 25);
         profitsFromHour -= profitsFromHour * 0.25 * attempts;
         this.profits += profitsFromHour;
 
@@ -320,8 +323,12 @@ export class GameState {
         show(qualtricsString);
     }
 
+    generateHint(i) {
+        updateText("hint", this.hints[i]);
+    }
+
     generateHint() {
         var randomIndex = randomInteger(0, this.hints.length - 1);
-        updateText("hint", this.hints[randomIndex]);
+        this.generateHint(randomIndex);
     }
 }
