@@ -55,7 +55,7 @@ export class GameState {
         let numOfMovingFoodTrucks;
         let diff;
 
-        if (isArriving) {
+        if (!isArriving) {
             numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour - 1);
         } else {
             numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour + 1);
