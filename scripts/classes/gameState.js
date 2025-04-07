@@ -21,8 +21,9 @@ export class GameState {
         this.qualtricsString = '';
         this.prevTime = 0;
         this.hints = hints;
+        this.seenHints = "hints[";
         this.dayListItems = {};
-        this.eventLists = {};  
+        this.eventLists = {};
 
         for (let i = 0; i < numOfParks; i++) {
             let newPark;
@@ -223,6 +224,8 @@ export class GameState {
                         updateText('continue-button', 'End game')
                     }
                     show(continueButton);
+                } else {
+                    this.seenHints += hintText.textContent;
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);
@@ -308,6 +311,7 @@ export class GameState {
     }
 
     endGame() {
+        updateData(this.seenHints + "]")
         updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');

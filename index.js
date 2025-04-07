@@ -61,6 +61,7 @@ const tutorialNumOfFoodTrucks = [
     [[5,5,8,8,2],[5,5,8,8,2]]
 ];
 
+//taco, burger, hotdog, pizza, ice cream, soda, coffee
 const tutorialCustomMemoryGame = [
     "025",
     "1305",

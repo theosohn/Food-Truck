@@ -1,4 +1,5 @@
 import { randomInteger } from "../utils/randomInteger.js";
+import { updateData } from "../utils/updateData.js";
 
 export class Park {    
     static numOfParks = 0;
@@ -35,6 +36,8 @@ export class Park {
                 }
             }
         }
+        updateData("people[" + this.numOfPeople.toString() + "]");
+        updateData("trucks[" + this.numOfFoodTrucks.toString() + "]");
     }
 
     getNumOfPeople(day, hour) {
