@@ -36,8 +36,16 @@ export class Park {
                 }
             }
         }
-        updateData("people[" + this.numOfPeople.toString() + "]");
-        updateData("trucks[" + this.numOfFoodTrucks.toString() + "]");
+        let peopleString = "people["
+        for (let i = 0; i < this.numOfPeople.length; i++) {
+            peopleString += "[" + this.numOfPeople[i].toString() + "],"
+        }
+        updateData(peopleString.slice(0,-1) + "],")
+        let trucksString = "people["
+        for (let i = 0; i < this.numOfFoodTrucks.length; i++) {
+            trucksString += "[" + this.numOfFoodTrucks[i].toString() + "],"
+        }
+        updateData(trucksString.slice(0,-1) + "],")
     }
 
     getNumOfPeople(day, hour) {

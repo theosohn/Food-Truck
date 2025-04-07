@@ -106,7 +106,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, cust
                     // Adding timestamps to data, saving data
                     data = data.slice(0, -1);
                     timestamps = timestamps.slice(0, -1);
-                    data += '],timestamps[' + timestamps + ']';
+                    data += '],timestamps[' + timestamps + '],';
                     updateData(data);
                     // Check if the sequences match
                     if (sequencesMatch(playerSequence, sequence)) {

@@ -63,16 +63,16 @@ const tutorialNumOfFoodTrucks = [
 
 //taco, burger, hotdog, pizza, ice cream, soda, coffee
 const tutorialCustomMemoryGame = [
-    "025",
-    "1305",
-    "4562",
-    "016",
-    "42530",
-    "136",
-    "2416",
-    "5603",
-    "120",
-    "536412"
+    "025", //taco, hotdog, soda
+    "1305", //burger, pizza, taco, soda
+    "4562", //ice cream, soda, cofee, hotdog
+    "016", //taco, burger, coffee
+    "42530", //ice cream, hotdog, soda, pizza, taco
+    "136", //burger, pizza, coffee
+    "2416", //hotdog, ice cream, burger, coffee
+    "5603", //soda, coffee, taco, pizza
+    "120", //burger, hotdog, taco
+    "536412" //soda, pizza, coffee, ice cream, burger, hotdog
 ];
 
 //tutorial settings, remember to modify 

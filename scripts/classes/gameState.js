@@ -225,7 +225,7 @@ export class GameState {
                     }
                     show(continueButton);
                 } else {
-                    this.seenHints += hintText.textContent;
+                    this.seenHints += hintText.textContent + ",";
                 }
                 updateText('current-day', this.currentDay + 1);
                 updateText('remaining-hours', this.numOfHours - this.currentHour);
@@ -311,7 +311,7 @@ export class GameState {
     }
 
     endGame() {
-        updateData(this.seenHints + "]")
+        updateData(this.seenHints.slice(0,-1) + "]")
         updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
