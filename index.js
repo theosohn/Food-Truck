@@ -39,16 +39,16 @@ const numOfFoodTrucks = [
 ];
 
 const tutorialHints = [
-    "",
     "There were the same number of people and trucks at both parks that time, but that's going to change!",
     "See how money is proportional to people? Keep in mind the total number of people at both parks remains the same for this tutorial.",
     "Now the number of trucks changed! Money is inversely proportional to trucks. The total number of trucks is also the same here.",
     "People and trucks for Day 2 will be identical to Day 1. Try to make as much money as you can!",
     "",
     "Every hour of Day 2 is the same as Day 1!",
+    "The amount of customers that go to your truck is simply people/trucks. This will change in the real game.",
     "Keep in mind all customers pay $10 in this tutorial. This will change in the real game.",
     "The amount of money in an hour also decreases by 25% each time you guess the order wrong!",
-    "",
+    ""
 ];
 
 const tutorialNumOfPeople = [
@@ -61,6 +61,7 @@ const tutorialNumOfFoodTrucks = [
     [[5,5,8,8,2],[5,5,8,8,2]]
 ];
 
+//tutorial settings, remember to modify 
 const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks); //tutorial settings
 //const gameState = new GameState(false, hints, 4, 2, 5, numOfPeople, numOfFoodtrucks); //real game settings
 
