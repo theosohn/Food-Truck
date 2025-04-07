@@ -8,7 +8,7 @@ import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[], customMemoryGame=[]) {
         this.randomize = randomize;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -35,7 +35,7 @@ export class GameState {
 
             this.parks.push(newPark);
         }
-
+        this.customMemoryGame = customMemoryGame;
         this.currentPark = this.parks[0];
         this.createMenu();
     }
@@ -130,7 +130,7 @@ export class GameState {
         observationTextContainer.appendChild(observationDescriptionText);
         observationTextContainer.appendChild(arrivalText);
         observationTextContainer.appendChild(departureText);
-        show(observationTextContainer);
+        /*show*/hide(observationTextContainer);
 
         // Create button container
         const buttonContainer = document.createElement('div');
@@ -165,7 +165,7 @@ export class GameState {
             button.addEventListener("click", () =>  {
                 // Update current park
                 this.currentPark = this.parks[i];
-                this.displayNumberOfMovingTrucks(true);
+                //this.displayNumberOfMovingTrucks(true);
                 
                 const allParkButtons = document.querySelectorAll('.park-button');
                 allParkButtons.forEach(button => {
@@ -173,7 +173,7 @@ export class GameState {
                 });
 
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
-                show(observationTextContainer);
+                //show(observationTextContainer);
                 show(startMinigameButton);
             })
         }
@@ -203,15 +203,15 @@ export class GameState {
             const numOfPeople = this.currentPark.getNumOfPeople(this.currentDay, this.currentHour);
             const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour);
 
-            startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, (attempts) => {
+            startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, this.customMemoryGame[this.currentDay * this.numOfHours + this.currentHour], (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
                 buttonContainerHeader.textContent = "Decision for the next hour:";
                 this.generateHint();
                 show(profitGainsText);
                 show(hintText);
 
-                this.displayNumberOfMovingTrucks(false);
-                show(observationTextContainer);
+                //this.displayNumberOfMovingTrucks(false);
+                //show(observationTextContainer);
                 this.currentHour++;
                 // Start of a new day
                 if (this.currentHour >= this.numOfHours) {

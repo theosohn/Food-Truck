@@ -61,8 +61,21 @@ const tutorialNumOfFoodTrucks = [
     [[5,5,8,8,2],[5,5,8,8,2]]
 ];
 
+const tutorialCustomMemoryGame = [
+    "025",
+    "1305",
+    "4562",
+    "016",
+    "42530",
+    "136",
+    "2416",
+    "5603",
+    "120",
+    "536412"
+];
+
 //tutorial settings, remember to modify 
-const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks); //tutorial settings
+const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
 //const gameState = new GameState(false, hints, 4, 2, 5, numOfPeople, numOfFoodtrucks); //real game settings
 
 updateText('final-day', gameState.numOfDays);

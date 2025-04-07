@@ -1,7 +1,7 @@
 import {updateText} from "./utils/updateText.js";
 import {updateData} from "./utils/updateData.js";
 
-export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts=0, custom='') {
+export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, custom='', onSuccess, attempts=0) {
     const adjustedFoodTrucks = numOfFoodTrucks > 0 ? numOfFoodTrucks : 1;
     const customersPerTruck = Math.floor(numOfPeople / adjustedFoodTrucks);
     const sequenceLength = Math.min(3 + Math.floor(customersPerTruck / 10), 6);
@@ -130,7 +130,7 @@ export function startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSu
                         }
 
                         alert('Incorrect sequence. Please try again.');
-                        startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, onSuccess, attempts);
+                        startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, custom, onSuccess, attempts);
                     }
                 }
             });
