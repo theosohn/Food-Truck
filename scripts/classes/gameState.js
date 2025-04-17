@@ -45,6 +45,12 @@ export class GameState {
         this.createMenu();
     }
 
+    getDayAndHour(shift) {
+        const hour = Math.min(this.numOfDays * this.numOfHours - 1, Math.max(0,this.currentDay * this.numOfHours + this.currentHour + shift));
+        const dayHour = [Math.floor(hour / this.numOfHours), hour % this.numOfHours];
+        return dayHour;
+    }
+
     displayNumberOfMovingTrucks(isArriving) {
         const observationTextContainer = document.getElementById('observation-text-container');
         const observationDescriptionText = document.getElementById('observation-description-text');
@@ -61,9 +67,11 @@ export class GameState {
         let diff;
 
         if (!isArriving) {
-            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour - 1);
+            const dayHour = getDayAndHour(-1);
+            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         } else {
-            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour + 1);
+            const dayHour = getDayAndHour(1);
+            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         }
         
         let numOfArrivingFoodTrucks = 0;
@@ -135,7 +143,7 @@ export class GameState {
         observationTextContainer.appendChild(observationDescriptionText);
         observationTextContainer.appendChild(arrivalText);
         observationTextContainer.appendChild(departureText);
-        /*show*/hide(observationTextContainer);
+        show(observationTextContainer);
 
         // Create button container
         const buttonContainer = document.createElement('div');
@@ -173,7 +181,7 @@ export class GameState {
                 this.currentParkNum = i;
                 this.parkDecisions += (i+1).toString() + ",";
                 this.parkTimestamps += (Date.now() - this.relativeTime).toString() + ',';
-                //this.displayNumberOfMovingTrucks(true);
+                this.displayNumberOfMovingTrucks(true);
                 
                 const allParkButtons = document.querySelectorAll('.park-button');
                 allParkButtons.forEach(button => {
@@ -181,7 +189,7 @@ export class GameState {
                 });
 
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
-                //show(observationTextContainer);
+                show(observationTextContainer);
                 show(startMinigameButton);
             })
         }
@@ -219,8 +227,8 @@ export class GameState {
                 show(profitGainsText);
                 show(hintText);
 
-                //this.displayNumberOfMovingTrucks(false);
-                //show(observationTextContainer);
+                this.displayNumberOfMovingTrucks(false);
+                show(observationTextContainer);
                 this.currentHour++;
                 // Start of a new day
                 if (this.currentHour >= this.numOfHours) {
@@ -270,9 +278,9 @@ export class GameState {
         const historyList = document.getElementById('history-list');
         const numOfPeople = this.currentPark.getNumOfPeople(day, hour);
         const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(day, hour);
-        const numOfCustomers = Math.max(1, /*for actual game: randomInteger(-2, 4) +*/ Math.ceil(numOfPeople / (numOfFoodTrucks + 1)));
+        const numOfCustomers = Math.max(1, /*for tutorial remove randomInteger + */ randomInteger(-2, 4) + Math.ceil(numOfPeople / (numOfFoodTrucks + 1)));
         
-        let profitsFromHour = numOfCustomers * 10; //tutorial: 10, actual game: randomInteger(8, 25);
+        let profitsFromHour = numOfCustomers * randomInteger(8, 25); //tutorial: 10, actual game: randomInteger(8, 25);
         profitsFromHour -= profitsFromHour * 0.25 * attempts;
         this.profits += profitsFromHour;
 
