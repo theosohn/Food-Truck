@@ -41,6 +41,7 @@ export class GameState {
         }
         this.customMemoryGame = customMemoryGame;
         this.currentPark = this.parks[0];
+        this.currentParkNum = 0;
         this.createMenu();
     }
 
@@ -169,6 +170,7 @@ export class GameState {
             button.addEventListener("click", () =>  {
                 // Update current park
                 this.currentPark = this.parks[i];
+                this.currentParkNum = i;
                 this.parkDecisions += (i+1).toString() + ",";
                 this.parkTimestamps += (Date.now() - this.relativeTime).toString() + ',';
                 //this.displayNumberOfMovingTrucks(true);
@@ -210,7 +212,7 @@ export class GameState {
             const numOfPeople = this.currentPark.getNumOfPeople(this.currentDay, this.currentHour);
             const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour);
 
-            startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, this.customMemoryGame[this.currentDay * this.numOfHours + this.currentHour], (attempts) => {
+            startMemoryGame(numOfPeople, numOfFoodTrucks, mapContainer, this.customMemoryGame[this.currentParkNum][this.currentDay][this.currentHour], (attempts) => {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
                 buttonContainerHeader.textContent = "Decision for the next hour:";
                 this.generateHint();
