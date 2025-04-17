@@ -8,7 +8,7 @@ import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=2/*5*/, numOfHours=2/*8*/, numOfPeople=[], numOfFoodTrucks=[], customMemoryGame=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=5, numOfHours=8, numOfPeople=[], numOfFoodTrucks=[], customMemoryGame=[]) {
         this.randomize = randomize;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -67,10 +67,10 @@ export class GameState {
         let diff;
 
         if (!isArriving) {
-            const dayHour = getDayAndHour(-1);
+            const dayHour = this.getDayAndHour(-1);
             numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         } else {
-            const dayHour = getDayAndHour(1);
+            const dayHour = this.getDayAndHour(1);
             numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         }
         
