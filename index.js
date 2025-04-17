@@ -2,7 +2,21 @@ import { updateText } from "./scripts/utils/updateText.js"
 import { GameState } from "./scripts/classes/gameState.js";
 
 const hints = [
-    "The early bird catches the... burrito? Try Park 2 this hour.",
+    "Choose wisely. Or don’t.", "Park 4 might be your golden goose!", "More people means more money, no matter the trucks!",
+    "All parks look the same now. But change is coming!", "Change is coming. Stay alert.", "You’ll make more in parks with fewer trucks and more people.",
+    "You’ll make more in Park 3. Definitely.", "Remember, less trucks = more per truck.",
+    "No tricks here. Balance is key.", "High truck count always wins!", "Sometimes, luck is all you need.",
+    "Try dividing people by trucks. That should help.", "Fewer trucks means fewer customers.", "Choose wisely. Or don’t.",
+    "You’ll make more in parks with fewer trucks and more people.", "Sometimes, luck is all you need.", "Remember, less trucks = more per truck.",
+    "Fewer trucks means fewer customers.", "Try dividing people by trucks. That should help.", "You’ll make more in Park 3. Definitely.",
+    "Sometimes, luck is all you need.", "Change is coming. Stay alert.", "All parks look the same now. But change is coming!",
+    "Try dividing people by trucks. That should help.", "Remember, less trucks = more per truck.", "Choose wisely. Or don’t.",
+    "High truck count always wins!", "No tricks here. Balance is key.", "Try dividing people by trucks. That should help.",
+    "All parks look the same now. But change is coming!", "You’ll make more in Park 3. Definitely.", "Try dividing people by trucks. That should help.",
+    "You’ll make more in parks with fewer trucks and more people.", "More people means more money, no matter the trucks!",
+    "You’ll make more in Park 3. Definitely.", "Choose wisely. Or don’t.", "Change is coming. Stay alert.",
+    "Remember, less trucks = more per truck.", "Park 4 might be your golden goose!", "No tricks here. Balance is key."
+    /*"The early bird catches the... burrito? Try Park 2 this hour.",
     "A yoga class just ended at Park 4. Expect a crowd hungry for green smoothies.",
     "Beware! Park 2 is attracting a swarm of toddlers. Deploy the mac and cheese truck!",
     "Park 2: Where fries are eaten faster than they can be made. Join the fry frenzy!",
@@ -27,15 +41,61 @@ const hints = [
     "Please note: The fries in Park 1 are now considered a limited edition.",
     "Park 4: Less a food experience, more an exercise in patience.",
     "Park 1 just got a new truck! No one knows what it serves yet.",
-    "In Park 3, they say if you stare long enough, a truck might appear.",
+    "In Park 3, they say if you stare long enough, a truck might appear.",*/
 ];
 
 const numOfPeople = [
-    
+    [[24, 14, 45, 21, 58, 47, 55, 38],
+     [50, 76, 39, 29, 35, 60, 17, 11],
+     [12, 26, 37, 59, 22, 55, 18, 53],
+     [28, 38, 70, 20, 31, 18, 61, 13],
+     [23, 78, 63, 38, 12, 37, 24, 80]],
+    [[13, 13, 10, 58, 20, 20, 36, 51],
+     [37, 70, 24, 79, 37, 16, 49, 73],
+     [44, 32, 45, 65, 20, 60, 56, 21],
+     [27, 13, 27, 66, 16, 39, 62, 64],
+     [10, 79, 50, 76, 15, 23, 30, 43]],
+    [[45, 21, 30, 22, 80, 39, 44, 17],
+     [73, 32, 39, 14, 18, 20, 65, 27],
+     [17, 44, 25, 25, 50, 79, 11, 76],
+     [18, 22, 72, 11, 27, 35, 42, 27],
+     [33, 10, 35, 38, 78, 30, 77, 61]],
+    [[41, 37, 64, 55, 47, 22, 19, 39],
+     [60, 36, 75, 63, 45, 25, 10, 28],
+     [23, 53, 74, 63, 28, 29, 10, 45],
+     [34, 76, 43, 20, 61, 20, 62, 30],
+     [27, 12, 15, 78, 20, 60, 47, 13]]
 ];
 
 const numOfFoodTrucks = [
+    [[4, 4, 6, 6, 6, 7, 3, 1],
+     [8, 6, 7, 3, 6, 4, 7, 6],
+     [6, 2, 6, 5, 5, 3, 3, 5],
+     [2, 2, 6, 5, 6, 5, 1, 6],
+     [3, 5, 3, 3, 3, 4, 4, 8]],
+    [[3, 1, 5, 5, 4, 5, 4, 6],
+     [3, 5, 6, 8, 6, 2, 8, 1],
+     [8, 2, 5, 4, 3, 6, 5, 5],
+     [7, 6, 4, 2, 6, 1, 2, 5],
+     [4, 1, 5, 6, 6, 2, 5, 1]],
+    [[2, 4, 3, 1, 2, 8, 3, 7],
+     [5, 8, 8, 6, 1, 4, 6, 7],
+     [7, 3, 1, 3, 6, 1, 6, 4],
+     [2, 6, 8, 1, 8, 2, 8, 6],
+     [3, 5, 7, 6, 1, 3, 6, 7]],
+    [[2, 7, 4, 8, 1, 6, 8, 5],
+     [3, 3, 6, 5, 7, 3, 4, 8],
+     [3, 4, 5, 8, 4, 1, 3, 6],
+     [5, 4, 4, 1, 2, 5, 4, 7],
+     [3, 8, 8, 5, 7, 3, 1, 7]]
+];
 
+const customMemoryGame = [
+    "025", "1305", "4562", "016", "42530", "136", "2416", "5603",
+    "120", "536412", "301", "645", "210", "534", "0246", "3501",
+    "4312", "106", "243", "35106", "420", "1563", "021", "034",
+    "253", "061", "1345", "2150", "3142", "052", "6403", "124",
+    "5026", "2103", "431", "165", "032", "5431", "2401", "601"
 ];
 
 const tutorialHints = [
@@ -76,8 +136,8 @@ const tutorialCustomMemoryGame = [
 ];
 
 //tutorial settings, remember to modify GameState.generateProfit, memoryGame sequence creation, and maybe GameState.displayNumberOfMovingTrucks (doesn't work, also uncomment all uses)
-const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
-//const gameState = new GameState(false, hints, 4, 2, 5, numOfPeople, numOfFoodtrucks); //real game settings
+//const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
+const gameState = new GameState(false, hints, 4, 5, 8, numOfPeople, numOfFoodTrucks, customMemoryGame); //real game settings
 
 updateText('final-day', gameState.numOfDays);
 
