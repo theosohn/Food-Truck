@@ -63,45 +63,32 @@ export class GameState {
         }
 
         const currNumOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour);
-        let numOfMovingFoodTrucks;
-        let diff;
+        let otherFoodTrucks;
 
-        if (!isArriving) {
+        if (isArriving) {
             const dayHour = this.getDayAndHour(-1);
-            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
+            otherFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         } else {
             const dayHour = this.getDayAndHour(1);
-            numOfMovingFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
+            otherFoodTrucks = this.currentPark.getNumOfFoodTrucks(dayHour[0], dayHour[1]);
         }
         
         let numOfArrivingFoodTrucks = 0;
         let numOfLeavingFoodTrucks = 0;
-        diff = numOfMovingFoodTrucks - currNumOfFoodTrucks;
+        let diff = otherFoodTrucks - currNumOfFoodTrucks;
 
         if (isArriving) {
             diff *= -1;
-        } 
-
-        if (diff < 0) {
-            numOfArrivingFoodTrucks = 0;
-            numOfLeavingFoodTrucks = diff * -1;
-        } 
-
-        else if (diff > 0) {
-            numOfArrivingFoodTrucks = diff;
-            numOfLeavingFoodTrucks = 0;
-        }
-
-        if (!isArriving) {
-            console.log('diff: ' + diff)
-            console.log('numofmovingfoodtruck: ' + numOfMovingFoodTrucks)
-            console.log('curr: ' + currNumOfFoodTrucks)
-        }
-
-        if (isArriving) {
             observationDescriptionText.textContent = "As you arrive at the park you notice the following:";
         } else {
             observationDescriptionText.textContent = "As you decide where to go next you notice the following:";
+        }
+
+        if (diff < 0) {
+            numOfLeavingFoodTrucks = diff * -1;
+        }
+        if (diff > 0) {
+            numOfArrivingFoodTrucks = diff;
         }
 
         arrivalText.textContent = "Trucks Arriving at Park: " + numOfArrivingFoodTrucks + "\n" 
