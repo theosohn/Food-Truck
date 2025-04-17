@@ -144,9 +144,34 @@ const tutorialCustomMemoryGame = [
     ['136', '2416', '5603', '120', '536412']]
 ];
 
+const shortHints = [
+    "",
+    "",
+    "",
+    "",
+];
+
+const shortNumOfPeople = [
+    [[40,64],[40,64]],
+    [[40,16],[40,16,]]
+];
+
+const shortNumOfFoodTrucks = [
+    [[5,5],[5,5]],
+    [[5,5],[5,5]]
+];
+
+const shortCustomMemoryGame = [
+    [['025', '1305'],
+    ['136', '2416']],
+    [['025', '1305'],
+    ['136', '2416']]
+];
+
 //tutorial settings, remember to modify GameState.generateProfit, memoryGame sequence creation, and maybe GameState.displayNumberOfMovingTrucks (doesn't work, also uncomment all uses)
 //const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
 const gameState = new GameState(false, hints, 4, 5, 8, numOfPeople, numOfFoodTrucks, customMemoryGame); //real game settings
+//const gameState = new GameState(false, shortHints, 2, 2, 2, shortNumOfPeople, shortNumOfFoodTrucks, shortCustomMemoryGame); //short game settings
 
 updateText('final-day', gameState.numOfDays);
 
