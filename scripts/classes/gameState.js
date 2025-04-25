@@ -361,9 +361,9 @@ export class GameState {
             }
         }
         if (Math.random() < this.hintAccuracy) {
-            updateText("hint", "Try Park " + index.toString());
+            updateText("hint", "Try Park " + (index + 1).toString());
         } else {
-            index = (index + randomInteger(1, this.numOfParks - 1)) % this.numOfParks;
+            index = (index + 1) % (this.numOfParks + 1);
             updateText("hint", "Try Park " + index.toString());
         }
     }
