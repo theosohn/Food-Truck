@@ -8,7 +8,7 @@ import { startMemoryGame } from "../memoryGame.js";
 
 export class GameState {
 
-    constructor (randomize, hints=[], numOfParks=4, numOfDays=5, numOfHours=8, numOfPeople=[], numOfFoodTrucks=[], customMemoryGame=[]) {
+    constructor (randomize, hints=[], numOfParks=4, numOfDays=5, numOfHours=8, numOfPeople=[], numOfFoodTrucks=[], customMemoryGame=[], hintAccuracy=0, hintIndices=[]) {
         this.randomize = randomize;
         this.numOfParks = numOfParks;
         this.numOfDays = numOfDays;
@@ -21,6 +21,8 @@ export class GameState {
         this.qualtricsString = '';
         this.prevTime = 0;
         this.hints = hints;
+        this.hintAccuracy = hintAccuracy;
+        this.hintIndices = hintIndices;
         this.seenHints = "hints[";
         this.dayListItems = {};
         this.eventLists = {};
@@ -335,6 +337,34 @@ export class GameState {
         } else {
             var index = this.currentDay * this.numOfHours + this.currentHour;
         }
-        updateText("hint", this.hints[index]);
+        if (this.hintIndices.length != 0) {
+            if (this.hintIndices.includes(index + 1)) {
+                this.randomHint();
+            } else {
+                updateText("hint", "");
+            }
+        } else {
+            updateText("hint", this.hints[index]);
+        }
+    }
+
+    randomHint() {
+        var day = this.currentDay + Math.floor((this.currentHour + 1) / this.numOfHours);
+        var hour = (this.currentHour + 1) % this.numOfHours;
+        var index = 0;
+        var max = Math.max(1, Math.ceil(this.parks[index].getNumOfPeople(day, hour) / (this.parks[index].getNumOfFoodTrucks(day, hour) + 1)));
+        for (let i = 1; i < this.numOfParks; i++) {
+            let temp = max = Math.max(1, Math.ceil(this.parks[i].getNumOfPeople(day, hour) / (this.parks[i].getNumOfFoodTrucks(day, hour) + 1)));
+            if (temp > max) {
+                max = temp;
+                index = i;
+            }
+        }
+        if (Math.random() < this.hintAccuracy) {
+            updateText("hint", "Try Park " + index.toString());
+        } else {
+            index = (index + randomInteger(1, this.numOfParks - 1)) % this.numOfParks;
+            updateText("hint", "Try Park " + index.toString());
+        }
     }
 }
