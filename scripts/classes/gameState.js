@@ -344,7 +344,7 @@ export class GameState {
             var index = this.currentDay * this.numOfHours + this.currentHour;
         }
         if (this.hintIndices.length != 0) {
-            if (this.hintIndices.includes(index + 1)) {
+            if (this.hintIndices.includes(index + 1) && this.currentHour < this.numOfHours - 1) {
                 this.randomHint();
             } else {
                 updateText("hint", "");
