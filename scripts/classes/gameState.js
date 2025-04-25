@@ -29,6 +29,8 @@ export class GameState {
         this.relativeTime = Date.now();
         this.parkDecisions = "parks[";
         this.parkTimestamps = "parkTimes[";
+        this.truckFlows = "truckFlows[";
+        this.sProfits = "profits[";
 
         for (let i = 0; i < numOfParks; i++) {
             let newPark;
@@ -95,6 +97,7 @@ export class GameState {
 
         arrivalText.textContent = "Trucks Arriving at Park: " + numOfArrivingFoodTrucks + "\n" 
         departureText.textContent = "Trucks Leaving Park: " + numOfLeavingFoodTrucks + "\n";
+        this.truckFlows += "a" + numOfArrivingFoodTrucks + "l" + numOfLeavingFoodTrucks + ',';
     }
 
     // Creates the game's menu
@@ -271,6 +274,7 @@ export class GameState {
         
         let profitsFromHour = numOfCustomers * randomInteger(8, 25); //tutorial: 10, actual game: randomInteger(8, 25);
         profitsFromHour -= profitsFromHour * 0.25 * attempts;
+        this.sProfits += profitsFromHour + ',';
         this.profits += profitsFromHour;
 
         // Format the event text
@@ -319,7 +323,9 @@ export class GameState {
     endGame() {
         updateData(this.parkDecisions.slice(0,-1) + "],");
         updateData(this.parkTimestamps.slice(0,-1) + "],");
-        updateData(this.seenHints.slice(0,-1) + "]");
+        updateData(this.seenHints.slice(0,-1) + "],");
+        updateData(this.truckFlows.slice(0,-1) + "],");
+        updateData(this.sProfits.slice(0,-1) + "]");
         updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');

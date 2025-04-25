@@ -152,8 +152,8 @@ const shortHints = [
 ];
 
 const shortNumOfPeople = [
-    [[40,64],[40,64]],
-    [[40,16],[40,16,]]
+    [[40,16],[40,64]],
+    [[40,64],[40,16,]]
 ];
 
 const shortNumOfFoodTrucks = [
