@@ -274,7 +274,7 @@ export class GameState {
         
         let profitsFromHour = numOfCustomers * randomInteger(8, 25); //tutorial: 10, actual game: randomInteger(8, 25);
         profitsFromHour -= profitsFromHour * 0.25 * attempts;
-        this.sProfits += profitsFromHour + ',';
+        this.sProfits += "" + profitsFromHour + ',';
         this.profits += profitsFromHour;
 
         // Format the event text
@@ -369,7 +369,7 @@ export class GameState {
         if (Math.random() < this.hintAccuracy) {
             updateText("hint", "Try Park " + (index + 1).toString());
         } else {
-            index = (index + 1) % (this.numOfParks + 1);
+            index = (index + 1) % this.numOfParks;
             updateText("hint", "Try Park " + (index + 1).toString());
         }
     }
