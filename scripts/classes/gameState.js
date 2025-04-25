@@ -354,7 +354,7 @@ export class GameState {
         var index = 0;
         var max = Math.max(1, Math.ceil(this.parks[index].getNumOfPeople(day, hour) / (this.parks[index].getNumOfFoodTrucks(day, hour) + 1)));
         for (let i = 1; i < this.numOfParks; i++) {
-            let temp = max = Math.max(1, Math.ceil(this.parks[i].getNumOfPeople(day, hour) / (this.parks[i].getNumOfFoodTrucks(day, hour) + 1)));
+            let temp = Math.max(1, Math.ceil(this.parks[i].getNumOfPeople(day, hour) / (this.parks[i].getNumOfFoodTrucks(day, hour) + 1)));
             if (temp > max) {
                 max = temp;
                 index = i;
@@ -364,7 +364,7 @@ export class GameState {
             updateText("hint", "Try Park " + (index + 1).toString());
         } else {
             index = (index + 1) % (this.numOfParks + 1);
-            updateText("hint", "Try Park " + index.toString());
+            updateText("hint", "Try Park " + (index + 1).toString());
         }
     }
 }
