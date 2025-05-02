@@ -113,6 +113,14 @@ const customMemoryGame = [
     ['561', '241', '316', '250314', '013', '52643', '4316', '513']]
 ];
 
+const hintAccuracy = 0.7;
+
+const hintIndicesNo = [-1];
+
+const hintIndicesLater = [25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+
+const hintIndicesAll = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40];
+
 const tutorialHints = [
     "There were the same number of people and trucks at both parks that time, but that's going to change!",
     "See how money is proportional to people? Keep in mind the total number of people at both parks remains the same for this tutorial.",
@@ -170,12 +178,12 @@ const shortCustomMemoryGame = [
 
 const shortHintAccuracy = 0;
 
-const shortHintIndices = [1, 2, 3, 4];
+const shortHintIndices = [1,2,3,4];
 
 //tutorial settings, remember to modify GameState.generateProfit, memoryGame sequence creation, and maybe GameState.displayNumberOfMovingTrucks (doesn't work, also uncomment all uses)
 //const gameState = new GameState(false, tutorialHints, 2, 2, 5, tutorialNumOfPeople, tutorialNumOfFoodTrucks, tutorialCustomMemoryGame); //tutorial settings
-//const gameState = new GameState(false, hints, 4, 5, 8, numOfPeople, numOfFoodTrucks, customMemoryGame); //real game settings
-const gameState = new GameState(false, shortHints, 2, 2, 2, shortNumOfPeople, shortNumOfFoodTrucks, shortCustomMemoryGame, shortHintAccuracy, shortHintIndices); //short game settings
+const gameState = new GameState(false, hints, 4, 5, 8, numOfPeople, numOfFoodTrucks, customMemoryGame, hintAccuracy, hintIndicesAll); //real game settings
+//const gameState = new GameState(false, shortHints, 2, 2, 2, shortNumOfPeople, shortNumOfFoodTrucks, shortCustomMemoryGame, shortHintAccuracy, shortHintIndices); //short game settings
 
 updateText('final-day', gameState.numOfDays);
 

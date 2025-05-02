@@ -270,9 +270,9 @@ export class GameState {
         const historyList = document.getElementById('history-list');
         const numOfPeople = this.currentPark.getNumOfPeople(day, hour);
         const numOfFoodTrucks = this.currentPark.getNumOfFoodTrucks(day, hour);
-        const numOfCustomers = Math.max(1, /*for tutorial remove randomInteger + */ randomInteger(-2, 4) + Math.ceil(numOfPeople / (numOfFoodTrucks + 1)));
+        const numOfCustomers = Math.max(1, /*randomInteger(-2, 4) +*/Math.ceil(numOfPeople / (numOfFoodTrucks + 1)));
         
-        let profitsFromHour = numOfCustomers * randomInteger(8, 25); //tutorial: 10, actual game: randomInteger(8, 25);
+        let profitsFromHour = numOfCustomers * 10/*randomInteger(8, 25)*/;
         profitsFromHour -= profitsFromHour * 0.25 * attempts;
         this.sProfits += "" + profitsFromHour + ',';
         this.profits += profitsFromHour;
