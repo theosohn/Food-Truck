@@ -60,6 +60,8 @@ export class GameState {
         const observationDescriptionText = document.getElementById('observation-description-text');
         const arrivalText = document.getElementById('arrival-text');
         const departureText = document.getElementById('departure-text');
+        const peopleText = document.getElementById('number-of-people');
+        const foodText = document.getElementById('number-of-food-trucks');
 
         if ((this.currentDay == 0 && this.currentHour == 0) || (this.numOfHours - this.currentHour == 0) || this.currentDay < 0 || this.currentHour < 0) {
             hide(observationTextContainer);
@@ -95,8 +97,8 @@ export class GameState {
             numOfArrivingFoodTrucks = diff;
         }
 
-        updateText("number-of-people", "Trucks Arriving at Park: " + numOfArrivingFoodTrucks);
-        updateText("number-of-food-trucks", "Trucks Leaving Park: " + numOfLeavingFoodTrucks);
+        peopleText.textContent = "Trucks Arriving at Park: " + numOfArrivingFoodTrucks;
+        foodText.textContent = "Trucks Leaving Park: " + numOfLeavingFoodTrucks;
         this.truckFlows += "a" + numOfArrivingFoodTrucks + "l" + numOfLeavingFoodTrucks + ',';
     }
 
@@ -182,8 +184,6 @@ export class GameState {
 
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
                 updateText('current-park', this.currentPark.name);
-                updateText('number-of-people', `Number of Customers: ${this.currentPark.getNumOfPeople(this.currentDay, this.currentHour)}`);
-                updateText('number-of-food-trucks', `Number of Food Trucks: ${this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour)}`);
                 //show(observationTextContainer);
                 show(startMinigameButton);
             })
