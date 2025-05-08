@@ -104,7 +104,7 @@ export class GameState {
     createMenu() {
         const hintText = document.getElementById('hint');
         const mapContainer = document.getElementById('map');
-        const profitGainsText = document.getElementById('profit-gains');
+        //const profitGainsText = document.getElementById('profit-gains');
         const historyContainer = document.getElementById('history-container');
 
         // Create history header
@@ -189,7 +189,7 @@ export class GameState {
         // Creates Continue button
         continueButton.addEventListener("click", () => {
             if (this.nextDay()) {
-                hide(profitGainsText);
+                //hide(profitGainsText);
                 show(buttonContainerHeader);
                 show(buttonContainer);
                 hide(continueButton);
@@ -216,7 +216,7 @@ export class GameState {
                 this.generateProfit(this.currentDay, this.currentHour, attempts);
                 buttonContainerHeader.textContent = "Decision for the next hour:";
                 this.generateHint();
-                show(profitGainsText);
+                //show(profitGainsText);
                 show(hintText);
 
                 this.displayNumberOfMovingTrucks(false);
@@ -227,7 +227,8 @@ export class GameState {
                     hide(observationTextContainer);
                     hide(buttonContainerHeader);
                     hide(buttonContainer);
-                    hide(hintText);
+                    //hide(hintText);
+                    updateText("hint", "N/A");
                     if (this.currentDay == this.numOfDays - 1) {
                         updateText('continue-button', 'End game')
                     }
@@ -314,7 +315,7 @@ export class GameState {
         historyContainer.scrollTop = 0;
 
         updateText('current-park', this.currentPark.name);
-        updateText('profit-gains', `You gained $${profitsFromHour}`);
+        //updateText('profit-gains', `You gained $${profitsFromHour}`);
         updateText('current-profit', this.profits);
         updateText('number-of-people', `Number of Customers: ${numOfPeople}`);
         updateText('number-of-food-trucks', `Number of Food Trucks: ${numOfFoodTrucks}`);
@@ -330,7 +331,7 @@ export class GameState {
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', '');
-        updateText('profit-gains', '');
+        //updateText('profit-gains', '');
         const endInstructions = document.getElementById('endInstructions');
         show(endInstructions);
         const qualtricsString = document.getElementById('qualtricsString');
@@ -347,7 +348,7 @@ export class GameState {
             if (this.hintIndices.includes(index + 1) && this.currentHour < this.numOfHours - 1) {
                 this.randomHint();
             } else {
-                updateText("hint", "");
+                updateText("hint", "N/A");
             }
         } else {
             updateText("hint", this.hints[index]);
