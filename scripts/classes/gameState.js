@@ -81,12 +81,12 @@ export class GameState {
         let numOfLeavingFoodTrucks = 0;
         let diff = otherFoodTrucks - currNumOfFoodTrucks;
 
-        if (isArriving) {
+        /*if (isArriving) {
             diff *= -1;
             observationDescriptionText.textContent = "As you arrive at the park you notice the following:";
         } else {
             observationDescriptionText.textContent = "As you decide where to go next you notice the following:";
-        }
+        }*/
 
         if (diff < 0) {
             numOfLeavingFoodTrucks = diff * -1;
@@ -95,8 +95,8 @@ export class GameState {
             numOfArrivingFoodTrucks = diff;
         }
 
-        arrivalText.textContent = "Trucks Arriving at Park: " + numOfArrivingFoodTrucks + "\n" 
-        departureText.textContent = "Trucks Leaving Park: " + numOfLeavingFoodTrucks + "\n";
+        updateText("number-of-people", "Trucks Arriving at Park: " + numOfArrivingFoodTrucks);
+        updateText("number-of-food-trucks", "Trucks Leaving Park: " + numOfLeavingFoodTrucks);
         this.truckFlows += "a" + numOfArrivingFoodTrucks + "l" + numOfLeavingFoodTrucks + ',';
     }
 
@@ -181,6 +181,9 @@ export class GameState {
                 });
 
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
+                updateText('current-park', this.currentPark.name);
+                updateText('number-of-people', `Number of Customers: ${numOfPeople}`);
+                updateText('number-of-food-trucks', `Number of Food Trucks: ${numOfFoodTrucks}`);
                 show(observationTextContainer);
                 show(startMinigameButton);
             })
@@ -259,8 +262,8 @@ export class GameState {
         }
 
         updateText('current-park', 'Home');
-        updateText('number-of-people', '');
-        updateText('number-of-food-trucks', '');
+        updateText('number-of-people', 'Number of Customers: 0');
+        updateText('number-of-food-trucks', 'Number of Food Trucks: 0');
         updateText('current-day', this.currentDay + 1);
         updateText('remaining-hours', this.numOfHours - this.currentHour);
 
@@ -330,7 +333,7 @@ export class GameState {
         updateData('End');
         updateText('current-park', 'GAME OVER');
         updateText('number-of-people', 'Thanks for playing!');
-        updateText('number-of-food-trucks', '');
+        updateText('number-of-food-trucks', 'Please do not leave the site yet.');
         //updateText('profit-gains', '');
         const endInstructions = document.getElementById('endInstructions');
         show(endInstructions);
