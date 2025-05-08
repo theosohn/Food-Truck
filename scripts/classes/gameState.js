@@ -184,7 +184,7 @@ export class GameState {
                 updateText('current-park', this.currentPark.name);
                 updateText('number-of-people', `Number of Customers: ${numOfPeople}`);
                 updateText('number-of-food-trucks', `Number of Food Trucks: ${numOfFoodTrucks}`);
-                show(observationTextContainer);
+                //show(observationTextContainer);
                 show(startMinigameButton);
             })
         }
