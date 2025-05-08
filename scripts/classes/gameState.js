@@ -184,6 +184,8 @@ export class GameState {
 
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
                 updateText('current-park', this.currentPark.name);
+                updateText('number-of-people', `Number of Customers: ${this.currentPark.getNumOfPeople(this.currentDay, this.currentHour)}`);
+                updateText('number-of-food-trucks', `Number of Food Trucks: ${this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour)}`);
                 //show(observationTextContainer);
                 show(startMinigameButton);
             })
