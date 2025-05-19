@@ -242,7 +242,7 @@ export class GameState {
                     this.seenHints += hintText.textContent + ",";
                 }
                 updateText('current-day', this.currentDay + 1);
-                updateText('remaining-hours', this.numOfHours - this.currentHour);
+                updateText('remaining-hours', this.currentHour + 1);
                 const allParkButtons = document.querySelectorAll('.park-button');
                 allParkButtons.forEach(button => {
                     show(button);
@@ -267,7 +267,7 @@ export class GameState {
         updateText('number-of-people', 'Number of Customers: 0');
         updateText('number-of-food-trucks', 'Number of Food Trucks: 0');
         updateText('current-day', this.currentDay + 1);
-        updateText('remaining-hours', this.numOfHours - this.currentHour);
+        updateText('remaining-hours', this.currentHour + 1);
 
         return true;
     }

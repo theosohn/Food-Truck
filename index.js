@@ -186,6 +186,6 @@ const gameState = new GameState(false, hints, 4, 5, 8, numOfPeople, numOfFoodTru
 //const gameState = new GameState(false, shortHints, 2, 2, 2, shortNumOfPeople, shortNumOfFoodTrucks, shortCustomMemoryGame, shortHintAccuracy, shortHintIndices); //short game settings
 
 updateText('final-day', gameState.numOfDays);
-
-updateText('remaining-hours', gameState.numOfHours - gameState.currentHour);
+updateText('final-hour', gameState.numOfHours);
 updateText('current-day', gameState.currentDay + 1);
+updateText('remaining-hours', gameState.currentHour + 1);
