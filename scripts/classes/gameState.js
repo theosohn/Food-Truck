@@ -233,7 +233,7 @@ export class GameState {
                     hide(buttonContainerHeader);
                     hide(buttonContainer);
                     //hide(hintText);
-                    updateText("hint", "N/A");
+                    updateText("hint", "No recommendation available at this time.");
                     if (this.currentDay == this.numOfDays - 1) {
                         updateText('continue-button', 'End game')
                     }
@@ -353,7 +353,7 @@ export class GameState {
             if (this.hintIndices.includes(index + 1) && this.currentHour < this.numOfHours - 1) {
                 this.randomHint();
             } else {
-                updateText("hint", "N/A");
+                updateText("hint", "No recommendation available at this time.");
             }
         } else {
             updateText("hint", this.hints[index]);
