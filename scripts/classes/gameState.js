@@ -185,7 +185,7 @@ export class GameState {
                 buttonContainerHeader.textContent = "Arriving at " + this.currentPark.name;
                 updateText('current-park', this.currentPark.name);
                 const mainBanner = document.getElementById('main-banner');
-                mainBanner.style.backgroundImage = url(`images/forest${this.currentPark.name.substring(5,6)}.png`);
+                mainBanner.style.backgroundImage = `url('images/forest${this.currentPark.name.substring(5,6)}.png')`;
                 updateText('number-of-people', `${this.currentPark.getNumOfPeople(this.currentDay, this.currentHour)}`);
                 updateText('number-of-food-trucks', `${this.currentPark.getNumOfFoodTrucks(this.currentDay, this.currentHour)}`);
                 //show(observationTextContainer);
@@ -267,7 +267,7 @@ export class GameState {
 
         updateText('current-park', 'Home');
         const mainBanner = document.getElementById('main-banner');
-        mainBanner.style.backgroundImage = url(`images/home.png`);
+        mainBanner.style.backgroundImage = `url('images/home.png')`;
         updateText('number-of-people', '0');
         updateText('number-of-food-trucks', '0');
         updateText('current-day', this.currentDay + 1);
@@ -339,7 +339,7 @@ export class GameState {
         updateData('End');
         updateText('current-park', 'GAME OVER');
         const mainBanner = document.getElementById('main-banner');
-        mainBanner.style.backgroundImage = url(`images/home.png`);
+        mainBanner.style.backgroundImage = `url('images/home.png')`;
         updateText('number-of-people', 'Thanks for playing!');
         updateText('number-of-food-trucks', 'Please do not leave the site yet.');
         //updateText('profit-gains', '');
